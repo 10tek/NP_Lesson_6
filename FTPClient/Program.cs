@@ -16,9 +16,10 @@ namespace FTPClient
 
             var response = (FtpWebResponse)request.GetResponse();
 
-            using (var stream = response.GetResponseStream())
+            using (var responseStream = response.GetResponseStream())
+            using (var fileStream = File.OpenWrite("1.txt"))
             {
-                File.OpenWrite()
+                responseStream.CopyTo(fileStream);
             }
         }
     }
